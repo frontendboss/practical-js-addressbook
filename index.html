@@ -1,0 +1,68 @@
+<!-- This is a static file -->
+<!-- served from your routes in server.js -->
+
+<!-- You might want to try something fancier: -->
+<!-- html/nunjucks docs: http://mozilla.github.io/nunjucks/ -->
+<!-- jade: http://jade-lang.com/ -->
+<!-- haml: http://haml.info/tutorial.html -->
+<!-- hbs(handlebars): http://handlebarsjs.com/expressions.html -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome to HyperDev!</title>
+    <meta name="description" content="A cool thing made with HyperDev">
+    <link id="favicon" rel="icon" href="https://hyperdev.com/favicon-app.ico" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <header>
+      <h1>
+        My Address book
+      </h1>
+    </header>
+    <div id="msgBlock" class="msgBlock" style="display:none">
+      
+    </div>
+    <section id="addEditContactForm" style="display:none" rel=''>
+      <p><button onclick="handlers.viewContactList(this.getAttribute('rel'))" class="switchers" rel="contactList">Back to List</button></p>
+      <p><input type="text" placeholder="Contact Name" id="contactNameTextInput" /></p>
+      <p><input type="text" placeholder="Contact Mobile" id="contactMobileNumberInput" value="" /></p>
+      <p><input type="email" placeholder="Contact Email" id="contactEmailInput" value="" /></p>
+      <p><input type="checkbox"  id="isFavorite" value="true" name="isFavorite" /> Favorite</p>
+      <p><input type="checkbox"  id="inFamily" value="true" name="inFamily" /> Family Member</p>
+      
+      <button onclick="handlers.saveContact('contactList',this.parentNode.getAttribute('rel'))">Save Contact</button>
+      
+    </section>
+    <section id="viewContactDetails" style="display:none">
+      <p><button onclick="handlers.viewContactList(this.getAttribute('rel'))" class="switchers" rel="contactList">Back to List</button></p>
+      <div id="contactInformation"></div>
+     
+      <button onclick="handlers.addNewContact('addEditContactForm',this.previousElementSibling.getAttribute('rel'))">Edit Contact</button>
+      <button onclick="handlers.deleteContact('contactList',parseInt(this.parentNode.getAttribute('rel')))">Delete Contact</button>
+    </section>
+    
+    <section id="contactList">
+      <button onclick="handlers.addNewContact(this.getAttribute('rel'))" class="switchers" rel="addEditContactForm">Add New Contact</button>
+      <p id="emptyList" style='display:none'></p>
+      <ul id="list" class='list' style='display:none'>
+      </ul>
+      <p id="actionBar" style='display:none'>
+        <button onclick="handlers.toggleAll()">Select All</button>
+        <button onclick="handlers.deleteSelected()">Delete Selected</button>
+      </p>
+    </section>
+   
+
+    <!-- Your web-app is https, so your scripts need to be too -->
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"
+            integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
+            crossorigin="anonymous"></script>
+    <script src="client.js"></script>
+
+  </body>
+</html>
